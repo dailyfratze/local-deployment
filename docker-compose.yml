@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  database:
+    image: de.dailyfratze/database
+    build: 
+      context: database
+    environment:
+      - POSTGRES_DB=dailyfratze
+      - POSTGRES_USER=dailyfratze_root
+      - POSTGRESS_PASSWORD_FILE=/run/secrets/database_root_password
+    volumes:
+      - ./var/database:/var/lib/postgresql/data
+    secrets:
+      - database_root_password
+      - database_news_password
+    ports:
+      - "5432:5432"
+
+secrets:
+  database_root_password:
+    file: ./secrets/${PROFILE}/database_root_password
+  database_news_password:
+    file: ./secrets/${PROFILE}/database_news_password
