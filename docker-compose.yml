@@ -8,7 +8,7 @@ services:
     environment:
       - POSTGRES_DB=dailyfratze
       - POSTGRES_USER=dailyfratze_root
-      - POSTGRESS_PASSWORD_FILE=/run/secrets/database_root_password
+      - POSTGRES_PASSWORD_FILE=/run/secrets/database_root_password
     volumes:
       - ./var/database:/var/lib/postgresql/data
     secrets:
